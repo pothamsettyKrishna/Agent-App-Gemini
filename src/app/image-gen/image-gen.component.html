@@ -1,0 +1,21 @@
+<div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Generate the image of ..." 
+            aria-label="input text" aria-describedby="button-addon2" [(ngModel)]="userInput">
+        <button class="btn btn-primary" type="button" id="button-addon2" 
+            (click)="send()" [disabled]="userInput == ''"> Generate </button>
+    </div>
+    <div>
+        <mat-chip-set>
+            @for (i of options.value().options; track $index) {
+                <mat-chip class="example-box" cdkDrag (click)="chipSelect(i)">{{i}}</mat-chip>
+            }
+        </mat-chip-set>
+    </div>
+</div>
+
+@if(imagePrompt != ''){
+    <div class="img">
+        <app-image [imageDisc]="imagePrompt" />
+    </div>
+}

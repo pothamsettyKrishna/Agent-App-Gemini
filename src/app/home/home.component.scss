@@ -1,0 +1,14 @@
+.card{
+    cursor: pointer;
+    width: 18rem;
+}
+
+@media(max-width: 315px){
+    .card{
+        width:fit-content
+    }
+}
+
+@media (max-width: 745){
+
+}

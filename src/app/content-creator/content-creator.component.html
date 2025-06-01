@@ -1,0 +1,45 @@
+<div>
+    <select class="form-select form-select-md" aria-label="Default select example" [(ngModel)]="topicSelected">
+        <option selected value="">Open this select menu</option>
+        @for(topic of topics; track $index){
+            <option [value]="topic">{{topic}}</option>
+        }
+    </select>
+</div>
+
+@if(topicSelected == 'Summarize content'){
+    <div class="pt-3 form-floating">
+        <textarea class="form-control" placeholder="Add your content here" 
+            id="floatingTextarea" style="height: 170px" [(ngModel)]="userInput"
+                maxlength="5000"></textarea>
+        <label for="floatingTextarea"> Content </label>
+        <div class="pt-3">
+            <button class="btn btn-primary" (click)="summarize()" [disabled]="userInput == ''"> Summarize </button>
+        </div>
+    </div>
+
+    <div class="pt-3">
+        @if(summarize_content.isLoading() && userInput != ''){
+            <div class="spinner-grow text-info pt-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        }  @else if(summarize_content.hasValue() && summarize_content.value() != ''){
+            <div class="pt-3">
+                {{summarize_content.value()}}
+            </div>
+        }
+    </div>
+}
+
+@if(topicSelected == 'Product descriptions'){
+    <div class="pt-3">
+        <app-product-desc></app-product-desc>
+    </div>
+}
+
+@if(topicSelected == 'Social media captions'){
+    <div class="pt-3">
+        <app-caption-gen></app-caption-gen>
+    </div>
+}
+
